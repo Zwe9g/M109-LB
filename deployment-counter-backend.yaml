@@ -37,3 +37,10 @@ spec:
               configMapKeyRef:
                 name: counter-backend
                 key: database-host
+          - name: DB_NAME
+            valueFrom:
+              secretKeyRef:
+                name: counter-database
+                key: database-name
+          - name: npm_config_cache
+            value: ./.npm-cache
