@@ -1,1 +1,11 @@
-t
+apiVersion: v1
+kind: Service
+metadata:
+  name: counter-postgresadmin
+spec:
+  selector:
+    app: counter-postgresadmin
+  ports:
+    - protocol: TCP
+      port: 5050
+      targetPort: 5050

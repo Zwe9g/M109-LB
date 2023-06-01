@@ -3,21 +3,21 @@ apiVersion: apps/v1
 metadata:
   name: counter-postgresadmin
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: counter-postgresadmin
-    replicas: 1
-    template:
-      metadata:
-        labels:
-          apps: counter-postgresadmin
-      spec:
-        containers:
+  template:
+    metadata:
+      labels:
+        app: counter-postgresadmin
+    spec:
+      containers:
         - name: counter-postgresadmin
           image: >-
-            image
+            docker.io/thajeztah/pgadmin4
           ports:
-            - containerPort: 80
+            - containerPort: 5050
               protocol: TCP
           env:
             - name: PGADMIN_DEFAULT_EMAIL
