@@ -1,0 +1,18 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: counter-frontend
+  labels:
+    app: counter-frontend
+spec:
+  port:
+    targetPort: 3000-tcp
+  to:
+    kind: Service
+    name: counter-frontend
+    weight: 100
+
+# https Redirects
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect

@@ -1,0 +1,6 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: counter-frontend
+data:
+  BACKEND_URL: https://counter-backend-zwe9g-dev.apps.sandbox-m3.1530.p1.openshiftapps.com

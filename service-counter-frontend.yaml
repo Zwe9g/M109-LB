@@ -1,0 +1,20 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: counter-frontend
+  labels:
+    app: counter-frontend
+spec:
+  ipFamilies:
+    - IPv4
+  ports:
+    - name: 3000-tcp
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+  internalTrafficPolicy: Cluster
+  type: ClusterIP
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+  selector:
+    app: counter-frontend

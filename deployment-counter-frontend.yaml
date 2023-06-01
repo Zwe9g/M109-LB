@@ -1,0 +1,29 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: counter-frontend
+spec:
+  selector:
+    matchLabels:
+      app: counter-frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: counter-frontend
+    spec:
+      containers:
+        - name: counter-frontend
+          image: >-
+            ghcr.io/zwe9g/counter-frontend:v1
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          env:
+            - name: PUBLIC_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: counter-frontend
+                  key: BACKEND_URL
+            - name: npm_config_cache
+              value: ./.npm-cache
