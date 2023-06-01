@@ -1,0 +1,29 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: counter-postgresadmin
+spec:
+  selector:
+    matchLabels:
+      app: counter-postgresadmin
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          apps: counter-postgresadmin
+      spec:
+        containers:
+        - name: counter-postgresadmin
+          image: >-
+            image
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          env:
+            - name: PGADMIN_DEFAULT_EMAIL
+              value: admin@admin.com
+            - name: PGADMIN_DEFAULT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: counter-database
+                  key: database-user
