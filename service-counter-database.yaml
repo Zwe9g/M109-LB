@@ -1,0 +1,19 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: counter-database
+  labels:
+    app: counter-database
+spec:
+  ipFamilies:
+    - IPv4
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+  internalTrafficPolicy: Cluster
+  type: ClusterIP
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+  selector:
+    app: counter-database
